@@ -12,26 +12,26 @@ public class TestATM {
 	@Test 
 	public void testWithdrawl(){
 	//validate account 1 with pin 6789
-	a1.start(c1.Card, 6789);
+	a1.start(c1.c.accountNumber, 6789);
 	//attempt to withdrawl 20$ (valid)
 	//check for successful withdrawl/validate
 	
 	//validate that new balance is 60?
 	
 	//validate again
-		a1.start(c1.Card, 6789);	
+		a1.start(c1.c.accountNumber, 6789);	
 		//attempt to withdrawl 80$ (invalid)
 	}
 	
 	
 	@Test
 	public void testIncorrect(){
-		a1.start(c2.Card, 4444);
+		a1.start(c2.c.accountNumber, 4444);
 		//invalid
 	}
 	
 	@public void testDeposit(){
-		a1.start(c2.Card, 4321);
+		a1.start(c2.c.accountNumber, 4321);
 		
 		//attempt to deposit 20
 		 
