@@ -7,27 +7,10 @@ public class Bank {
 		Account a = new Account(80, 6789, 1234); // initial values as described
 		Account b = new Account(60, 4321, 6789); // initial values as described
 	}
-<<<<<<< HEAD
 
-	public boolean addAccount(int balance, int pin, int account) {
+	public boolean addAccount(double balance, int pin, int account) {
 		for (Account i : Accounts) {
 			if (i.account == account) {
-=======
-	Accounts.add(new Account(balance, pin, account));
-	return true;
-}
-public boolean validate(Account r){
-	if(r.account == a.account){
-		if(r.pin == a.pin){
-			return true;
-		}else{
-			return false;
-		}
-	}else if(r.account == b.account){
-			if(r.pin == b.pin){
-				return true;
-			}else{
->>>>>>> branch 'master' of https://github.com/jackklika/lab4-atm
 				return false;
 			}
 		}
@@ -53,16 +36,26 @@ public boolean validate(Account r){
 		 */
 	}
 
-	private boolean withdraw(double amount, Account r) {
+	private boolean changeBalance(double amount, Account r) {
 		for (Account i : Accounts) {
 			if (r.account == i.account) {
-				if (i.balance > amount) {
-					i.balance -= amount;
+				//check positive or negative
+				if(amount > 0){
+					//if positive, deposit
+					i.balance += amount;
 					return true;
+				}
+				else{
+					//withdraw, make sure there is enough money in account
+					if (i.balance > Math.abs(amount)) { 
+						//withdraw
+						i.balance += amount;
+						return true;
+					}
 				}
 			}
 
-		}
+		} 
 		return false;
 	}
 
