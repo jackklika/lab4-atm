@@ -15,7 +15,7 @@ public boolean addAccount(int balance, int pin, int account){
 	Accounts.add(new Account(balance, pin, account));
 	return true;
 }
-private boolean validate(Account r){
+public boolean validate(Account r){
 	if(r.account == a.account){
 		if(r.pin == a.pin){
 			return true;
