@@ -10,17 +10,17 @@ public class TestATM {
 	ATM a1 = new ATM();
 	
 	@Test 
-	public void testWithdrawl(){
+	public void testWithdraw(){
 	//validate account 1 with pin 6789
 	a1.start(c1.c.accountNumber, 6789);
-	//attempt to withdrawl 20$ (valid)
-	//check for successful withdrawl/validate
+	//attempt to withdraw 20$ (valid)
+	//check for successful withdraw/validate
 	
 	//validate that new balance is 60?
 	
 	//validate again
 		a1.start(c1.c.accountNumber, 6789);	
-		//attempt to withdrawl 80$ (invalid)
+		//attempt to withdraw 80$ (invalid)
 	}
 	
 	
@@ -30,7 +30,8 @@ public class TestATM {
 		//invalid
 	}
 	
-	@public void testDeposit(){
+	@Test
+	public void testDeposit(){
 		a1.start(c2.c.accountNumber, 4321);
 		
 		//attempt to deposit 20
