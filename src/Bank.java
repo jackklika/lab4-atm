@@ -16,6 +16,17 @@ public boolean addAccount(int balance, int pin, int account){
 	return true;
 }
 private boolean validate(Account r){
+
+	//loop to validate account, changed by kaitlyn
+	for(Account i: Accounts){
+		if (r.account == i.account){
+			return (r.pin == i.pin);
+		}
+			
+	}
+	return false;
+/*
+	 commenting out Johns code
 	if(r.account == a.account){
 		if(r.pin == a.pin){
 			return true;
@@ -31,6 +42,11 @@ private boolean validate(Account r){
 		}else{
 			return false;
 		}
-	}
+	 	*/
+	}	
 	
+private boolean withdraw(double amount ){
+	return true;
+}
+
 }
