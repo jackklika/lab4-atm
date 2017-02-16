@@ -1,15 +1,23 @@
 public class Account {
-public int balance, pin, account;
-	Account(int Balance, int pin, int account){
+public int pin, account;
+public double balance;
+
+	Account(double balance, int pin, int account){
 		this.account = account;
-		this.balance =Balance;
+		this.balance = balance;
 		this.pin = pin;
 		
 	}
-	Account( int pin, int account){
+	
+	// Switch to card
+	Account(int pin, int account){
 		this.account = account;
-		this.pin = pin;
-		
+		this.pin = pin;		
+	}
+	
+	// Is there enough money in this account to withdraw
+	public boolean validate(double withdrawalAmount){
+		return (withdrawalAmount <= balance);
 	}
 	
 }
