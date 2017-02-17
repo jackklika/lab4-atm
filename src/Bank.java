@@ -1,33 +1,36 @@
 import java.util.LinkedList;
 
 public class Bank {
-	LinkedList<Account> Accounts;
+	LinkedList<Account> accounts = new LinkedList<Account>();
 
-	public Bank() {
-		Account a = new Account(80, 6789, 1234); // initial values as described
-		Account b = new Account(60, 4321, 6789); // initial values as described
+	public Bank() {		
+		addAccount(80, 6789, 1234); // initial values as described
+		addAccount(60, 4321, 6789); // initial values as described
 	}
 
 	public boolean addAccount(double balance, int pin, int account) {
-		for (Account i : Accounts) {
+		for (Account i : accounts) {
 			if (i.account == account) {
+				System.out.println("[ERR]\t Account already exists" );
 				return false;
 			}
 		}
-		Accounts.add(new Account(balance, pin, account));
+		accounts.add(new Account(balance, pin, account));
+		System.out.println("[SUCCESS] Account added: " + " AccountID: " + account +  " Pin: " + pin + " Balance " + balance);
 		return true;
 	}
 
-	public boolean validate(Account r) {
+	public Account validate(int accountNum, int pin) {
 
 		// loop to validate account, changed by kaitlyn
-		for (Account i : Accounts) {
-			if (r.account == i.account) {
-				return (r.pin == i.pin);
+		// Returns account if the account is validated, null otherwise.
+		for (Account i : accounts) {
+			if (accountNum == i.account && pin == i.pin) {
+				return i;
 			}
 
 		}
-		return false;
+		return null;
 		/*
 		 * commenting out Johns code if(r.account == a.account){ if(r.pin ==
 		 * a.pin){ return true; }else{ return false; } }else if(r.account ==
@@ -38,19 +41,21 @@ public class Bank {
 
 	
 	public boolean withdraw(double amount, Account r){
-		for (Account i : Accounts) {
+		for (Account i : accounts) {
 			if (r.account == i.account){ // Does the account have the same ID?
 				if (i.validate(amount) == true) { // Does the account have the balance to withdraw from?
 					i.balance -= amount;
+					System.out.println("[SUCCESS]\t " + amount + " added to " + r.account + " Current Balance: " + r.balance);
 					return true;
 				}				
 			}
 		}
+		System.out.println("[ERR]\t " + amount + " not added to " + r.account + " -- INSUFFICIENT FUNDS! Balance: " + r.balance);
 		return false;
 	}
 	
 	public boolean deposit(double amount, Account r){
-		for (Account i : Accounts) {
+		for (Account i : accounts) {
 			if (r.account == i.account){ // Does the account have the same ID?
 				i.balance += amount; // Just add it.
 				return true;			

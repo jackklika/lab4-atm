@@ -22,46 +22,38 @@ public class ATM {
 	public static void start(int accountNumber, int pin){
 		
 		userAccount = new Account(pin, accountNumber);
-		myBank.validate(userAccount);
 		
 	}
 	
 	
 	// Returns true if withdrawal works, false if it doesn't and no operations occur
 	// Assumes the pin was correct
-	public static boolean withdraw(int amount){
+	public static boolean withdraw(double amount){
 		// account.validate (not bank.validate(account))
 				
-		if (myBank.validate(userAccount)){ // If the account is valid
-			System.out.println("##LOG: " + amount + " WITHDRAWN FROM " + userAccount);
-			return myBank.withdraw(amount, userAccount);
-		} else {
-			System.out.println("##ERROR: " + amount + " NOT WITHDRAWN FROM " + userAccount);
-			return false;
-		}
+		
+		return (myBank.withdraw(amount, userAccount));
 		
 		
 	}
 	
 	// Returns true if deposit works, false if it doesn't and no operations occur
 	// Assumes the pin was correct
-	public static boolean deposit(int amount){
+	public static boolean deposit(double amount){
 		
-		System.out.println("##LOG: " + amount + " DEPOSTED INTO " + userAccount);
 		return myBank.deposit(amount, userAccount);
 	}
 	
 	
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
 		boolean userExit = false;
 		
 		
 		Scanner reader = new Scanner(System.in);
 		
-		while (userExit){
+		while (userExit == false){
 			System.out.println("Welcome to LLM Banking!");
 			System.out.print("Please enter your account number: ");
 			accountNum = reader.nextInt();
@@ -70,31 +62,34 @@ public class ATM {
 			pin = reader.nextInt();
 			
 			System.out.println("Valdating account...");
-			if (myBank.validate(userAccount) == true){
+			
+			userAccount = myBank.validate(accountNum, pin);
+			if (userAccount != null){				
+				System.out.println("Welcome!");
 				
-				System.out.println("You're in!");
 				
-				while (userExit){
+				
+				while (userExit == false){
 					
+					System.out.println("AccountID: " + accountNum + " --- Balance: " + userAccount.balance);
 					System.out.println("Please provide a function: (W)ithdraw, (D)eposit, or (E)xit");
 					String input = reader.next().toUpperCase();
 					
-					if (input == "W"){ // Withdraw
+					if (input.equals("W")){ // Withdraw
 						System.out.println("How much would you like to withdraw?");
-						int wAmount = reader.nextInt();
-						withdraw(wAmount);
-						
-					} else if (input == "D") { // Deposit
+						double wAmount = reader.nextDouble();
+						withdraw(wAmount);						
+					} else if (input.equals("D")) { // Deposit
 						System.out.println("How much would you like to deposit?");
-						int dAmount = reader.nextInt();						
+						double dAmount = reader.nextDouble();						
 						deposit(dAmount);
 						
-					} else if (input == "E") { // Exit
+					} else if (input.equals("E")) { // Exit
 						userExit = true;
 						System.out.println("Goodbye!");
 						System.exit(0);
 					} else { // invalid input!
-						
+						System.out.println("!!! " + input + " is invalid input");
 					}
 				}
 				
