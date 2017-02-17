@@ -32,16 +32,23 @@ public class ATM {
 	public static boolean withdraw(int amount){
 		// account.validate (not bank.validate(account))
 				
-		
+		if (myBank.validate(userAccount)){ // If the account is valid
+			System.out.println("##LOG: " + amount + " WITHDRAWN FROM " + userAccount);
+			return myBank.withdraw(amount, userAccount);
+		} else {
+			System.out.println("##ERROR: " + amount + " NOT WITHDRAWN FROM " + userAccount);
+			return false;
+		}
 		
 		
 	}
 	
 	// Returns true if deposit works, false if it doesn't and no operations occur
-	// Assumes the pin was corruect
+	// Assumes the pin was correct
 	public static boolean deposit(int amount){
-		// account.validate (not bank.validate(account))
-				
+		
+		System.out.println("##LOG: " + amount + " DEPOSTED INTO " + userAccount);
+		return myBank.deposit(amount, userAccount);
 	}
 	
 	

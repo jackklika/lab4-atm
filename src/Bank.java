@@ -18,7 +18,7 @@ public class Bank {
 		return true;
 	}
 
-	private boolean validate(Account r) {
+	public boolean validate(Account r) {
 
 		// loop to validate account, changed by kaitlyn
 		for (Account i : Accounts) {
@@ -36,26 +36,26 @@ public class Bank {
 		 */
 	}
 
-	private boolean changeBalance(double amount, Account r) {
+	
+	public boolean withdraw(double amount, Account r){
 		for (Account i : Accounts) {
-			if (r.account == i.account) {
-				//check positive or negative
-				if(amount > 0){
-					//if positive, deposit
-					i.balance += amount;
+			if (r.account == i.account){ // Does the account have the same ID?
+				if (i.validate(amount) == true) { // Does the account have the balance to withdraw from?
+					i.balance -= amount;
 					return true;
-				}
-				else{
-					//withdraw, make sure there is enough money in account
-					if (i.balance > Math.abs(amount)) { 
-						//withdraw
-						i.balance += amount;
-						return true;
-					}
-				}
+				}				
 			}
-
-		} 
+		}
+		return false;
+	}
+	
+	public boolean deposit(double amount, Account r){
+		for (Account i : Accounts) {
+			if (r.account == i.account){ // Does the account have the same ID?
+				i.balance += amount; // Just add it.
+				return true;			
+			}
+		}
 		return false;
 	}
 
