@@ -2,42 +2,39 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 public class TestATM {
-	//customer with account number 1234
-	Customer c1 = new Customer(1234);
-	//customer with account number 6789
-	Customer c2 = new Customer(6789);
 	
-	ATM a1 = new ATM();
+	
+	//ATM a1 = new ATM();
+	Bank myBank = new Bank();
 	
 	@Test 
 	public void testWithdraw(){
+	System.out.println("TestWithdraw:");
 	//validate account 1 with pin 6789
-	a1.start(c1.c.accountNumber, 6789);
+	Account userAccount = myBank.validate(1234, 6789);
 	//attempt to withdraw 20$ (valid)
-	//check for successful withdraw/validate
-	
+	assertTrue(myBank.withdraw(20, userAccount));
 	//validate that new balance is 60?
-	
-	//validate again
-		a1.start(c1.c.accountNumber, 6789);	
-		//attempt to withdraw 80$ (invalid)
+	assertTrue(userAccount.balance == 60);
+	//attempt to withdraw 80$ (invalid)
+	assertFalse(myBank.withdraw(80, userAccount));
 	}
 	
 	
 	@Test
 	public void testIncorrect(){
-		a1.start(c2.c.accountNumber, 4444);
-		//invalid
+		System.out.println("TestIncorrect:");
+		assertTrue(myBank.validate(6789, 4444) == null);
 	}
 	
 	@Test
 	public void testDeposit(){
-		a1.start(c2.c.accountNumber, 4321);
-		
+		System.out.println("TestDeposit:");
+		Account userAccount = myBank.validate(6789, 4321);
 		//attempt to deposit 20
-		 
+		 assertTrue(myBank.deposit(20, userAccount));
 		//validate that new balance is 80
-		
+		assertTrue(userAccount.balance == 80);
 	}
 
 }
