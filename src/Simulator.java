@@ -9,6 +9,11 @@ public class Simulator {
 	public static void main(String[] args) throws IOException {
 		if (args[0].equals(null)){ // run with no arguments
 			// do prompt version
+			Scanner reader = new Scanner(System.in);
+			String input = null;
+			do {
+				input = reader.nextLine();
+			} while (prompt(input));
 		}
 		else { // run with filename argument
 			Path path = Paths.get(args[0]);
@@ -17,7 +22,8 @@ public class Simulator {
 		
 	}
 	
-	public void prompt(String s){
+	public boolean prompt(String s){
+		boolean b = true;
 		String[] sp = s.split("\\s+");
 		switch (sp[0]){
 			case "CARDREAD":
@@ -51,13 +57,14 @@ public class Simulator {
 						atm.buttonPress(2);
 						break;
 					case "CANCEL":
-						atm.buttonPress(3);
+						atm.buttonPress(0);
+						break;
 				}
 				break;
+			case "EXIT":
+				b = false;
+				break;
 		}
-	}
-	
-	public static void quickPrompt(String s){
-		
+		return b;
 	}
 }
