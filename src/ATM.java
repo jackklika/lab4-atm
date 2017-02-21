@@ -1,37 +1,34 @@
 import java.util.*;
+import java.time.*;
 
 
 public class ATM {
 
 	// User's account number
-	private static int accountNum = 0;
+	private int accountNum = 0;
 	
 	// User's pin
-	private static int pin = 0;
+	private int pin = 0;
 	
-	private static Account userAccount;
+	private Account userAccount;
 
-	private static Bank myBank = new Bank();
+	private Bank myBank;
 	
+	private Printer myPrinter;
 	
 	// Validation Exceptions
-	
-	
-	
-	// Takes accountNumber which is validated by the Bank object against the pin
-	public static void start(int accountNumber, int pin){
-		
-		userAccount = new Account(pin, accountNumber);
+	public ATM() {
+		myBank = new Bank();
+		myPrinter = new Printer();
 		
 	}
 	
 	
 	// Returns true if withdrawal works, false if it doesn't and no operations occur
 	// Assumes the pin was correct
-	public static boolean withdraw(double amount){
+	public boolean withdraw(double amount){
 		// account.validate (not bank.validate(account))
 				
-		
 		return (myBank.withdraw(amount, userAccount));
 		
 		
@@ -39,19 +36,79 @@ public class ATM {
 	
 	// Returns true if deposit works, false if it doesn't and no operations occur
 	// Assumes the pin was correct
-	public static boolean deposit(double amount){
+	public boolean deposit(double amount){
 		
 		return myBank.deposit(amount, userAccount);
 	}
 	
 	
+	// Reads the card and stores the account number.
+	public void cardRead(int accountNum){
+		
+	}
 	
-	public static void main(String[] args) {
+	// Numbers are entered into the PIN pad. Returns the numbers
+	public int num(int numbers){
+		return 0;
+	}
+	
+	// A string is displayed on the screen to the viewer
+	public void display(String str){
+		
+	}
+	
+	// A string is sent to the printer to be printed. 
+	public void print(String str){
+		myPrinter.print();
+	}
+	
+	// A button of of name <name> has been touched
+	// 0: CANCEL
+	// 1: W (withdraw)
+	// 2: CB (check balance)
+	public void buttonPress(int buttonID){
+		
+		switch(buttonID){
+		case 0:
+			//cancel things
+			break;
+		case 1: 
+			//withdraw things
+			break;
+		case 2:
+			//check balance
+			break;
+		default:
+			//invalid input thing
+			break;
+		}
+	}
+	
+	
+	
+	public void main(String[] args) {
 		
 		boolean userExit = false;
 		
 		
 		Scanner reader = new Scanner(System.in);
+		
+		while (userExit == false){
+			System.out.println("BOOT::");
+			System.out.println("DO YOU WANT TO READ FROM THE (T)EXT FILE /transactions.txt OR (S)TDIN OR (E)XIT?");
+			String answer = reader.next();
+			if (answer == "T") {
+				// goto text loop
+			} else if (answer == "S") {
+				// move on
+			} else if (answer == "E") {
+				userExit = true;
+				System.out.println("Goodbye!");
+				System.exit(0);
+			} else {
+				System.out.println("INVALID INPUT");
+			}
+		}
 		
 		while (userExit == false){
 			System.out.println("Welcome to LLM Banking!");
