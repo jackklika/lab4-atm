@@ -4,34 +4,27 @@ import java.util.*;
 public class ATM {
 
 	// User's account number
-	private static int accountNum = 0;
+	private int accountNum = 0;
 	
 	// User's pin
-	private static int pin = 0;
+	private int pin = 0;
 	
-	private static Account userAccount;
+	private Account userAccount;
 
-	private static Bank myBank = new Bank();
+	private Bank myBank;
 	
 	
 	// Validation Exceptions
-	
-	
-	
-	// Takes accountNumber which is validated by the Bank object against the pin
-	public static void start(int accountNumber, int pin){
-		
-		userAccount = new Account(pin, accountNumber);
-		
+	public ATM() {
+		myBank = new Bank();
 	}
 	
 	
 	// Returns true if withdrawal works, false if it doesn't and no operations occur
 	// Assumes the pin was correct
-	public static boolean withdraw(double amount){
+	public boolean withdraw(double amount){
 		// account.validate (not bank.validate(account))
 				
-		
 		return (myBank.withdraw(amount, userAccount));
 		
 		
@@ -39,14 +32,14 @@ public class ATM {
 	
 	// Returns true if deposit works, false if it doesn't and no operations occur
 	// Assumes the pin was correct
-	public static boolean deposit(double amount){
+	public boolean deposit(double amount){
 		
 		return myBank.deposit(amount, userAccount);
 	}
 	
 	
 	
-	public static void main(String[] args) {
+	public void main(String[] args) {
 		
 		boolean userExit = false;
 		
