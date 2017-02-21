@@ -1,9 +1,10 @@
 public class Customer {
 	
-	public Card c;
+	public Card card;
+	public int pin;
 	
 	public Customer(int account){
-		this.c = new Card(account);
+		this.card = new Card(account);
 	}
 
 	public Customer(Card tmp) {
