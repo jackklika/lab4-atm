@@ -5,5 +5,8 @@ public class Card {
   public Card (int account){
     this.accountNumber = account;
   }
+  public int acctNumber(){
+	  return accountNumber;
+  }
   
 }

@@ -3,28 +3,39 @@ import java.time.*;
 
 
 public class ATM {
+	
+	
+	// This handles user input.
+	// NOINPUT: Not accepting input.
+	// PIN: User can enter pin
+	// CASH: User entering cash amount
+	
+	public enum state{
+		NOINPUT, PIN, CASH;
+	}
 
-	// User's account number
-	private int accountNum = 0;
+	// User's state
+	public state atmState;
 	
-	
-	
-	// User's pin
+	// NOt sure if we need this
 	private int pin = 0;
 	
+	
+	private Customer currentCustomer = null;
 	private Account userAccount;
 
 	private Bank myBank;
 	
+	
+	// Peripherals
 	private Printer myPrinter;
 	
-	private Customer currentCustomer = null;
 	
-	// Validation Exceptions
+	
+	// Validation Exceptions?
 	public ATM() {
 		myBank = new Bank();
-		myPrinter = new Printer();
-		
+		myPrinter = new Printer();		
 	}
 	
 	
@@ -45,7 +56,7 @@ public class ATM {
 	// Reads the card and stores the account number.
 	// CARDREAD <num>
 	public void cardRead(int accountNum){
-		currentCustomer = new Customer(accountNum);
+		currentCustomer = new Customer(new Card(accountNum));
 		//curCustomer.c.accountNumber;
 	}
 	
