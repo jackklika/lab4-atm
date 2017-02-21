@@ -47,7 +47,7 @@ public class ATM {
 		
 	}
 	
-	// Numbers are entered into the PIN pad. Returns the numbers
+	// Numbers are entered into the PIN pad. Returns the numbers.
 	public int num(int numbers){
 		return 0;
 	}
@@ -59,7 +59,7 @@ public class ATM {
 	
 	// A string is sent to the printer to be printed. 
 	public void print(String str){
-		myPrinter.print();
+		myPrinter.print("TEST");
 	}
 	
 	// A button of of name <name> has been touched
