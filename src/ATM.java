@@ -1,4 +1,5 @@
 import java.util.*;
+import java.time.*;
 
 
 public class ATM {
@@ -13,10 +14,13 @@ public class ATM {
 
 	private Bank myBank;
 	
+	private Printer myPrinter;
 	
 	// Validation Exceptions
 	public ATM() {
 		myBank = new Bank();
+		myPrinter = new Printer();
+		
 	}
 	
 	
@@ -38,6 +42,49 @@ public class ATM {
 	}
 	
 	
+	// Reads the card and stores the account number.
+	public void cardRead(int accountNum){
+		
+	}
+	
+	// Numbers are entered into the PIN pad. Returns the numbers
+	public int num(int numbers){
+		return 0;
+	}
+	
+	// A string is displayed on the screen to the viewer
+	public void display(String str){
+		
+	}
+	
+	// A string is sent to the printer to be printed. 
+	public void print(String str){
+		myPrinter.print();
+	}
+	
+	// A button of of name <name> has been touched
+	// 0: CANCEL
+	// 1: W (withdraw)
+	// 2: CB (check balance)
+	public void buttonPress(int buttonID){
+		
+		switch(buttonID){
+		case 0:
+			//cancel things
+			break;
+		case 1: 
+			//withdraw things
+			break;
+		case 2:
+			//check balance
+			break;
+		default:
+			//invalid input thing
+			break;
+		}
+	}
+	
+	
 	
 	public void main(String[] args) {
 		
@@ -45,6 +92,23 @@ public class ATM {
 		
 		
 		Scanner reader = new Scanner(System.in);
+		
+		while (userExit == false){
+			System.out.println("BOOT::");
+			System.out.println("DO YOU WANT TO READ FROM THE (T)EXT FILE /transactions.txt OR (S)TDIN OR (E)XIT?");
+			String answer = reader.next();
+			if (answer == "T") {
+				// goto text loop
+			} else if (answer == "S") {
+				// move on
+			} else if (answer == "E") {
+				userExit = true;
+				System.out.println("Goodbye!");
+				System.exit(0);
+			} else {
+				System.out.println("INVALID INPUT");
+			}
+		}
 		
 		while (userExit == false){
 			System.out.println("Welcome to LLM Banking!");
