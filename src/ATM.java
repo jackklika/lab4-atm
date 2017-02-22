@@ -5,7 +5,7 @@ import java.time.*;
 public class ATM {
 	
 	
-	// This handles user input.
+	// This indicates the state of this application in regards to user input handling.
 	// NOINPUT: Not accepting input.
 	// PIN: User can enter pin
 	// CASH: User entering cash amount
@@ -20,22 +20,21 @@ public class ATM {
 	// NOt sure if we need this
 	private int pin = 0;
 	
-	
 	private Customer currentCustomer = null;
 	private Account userAccount;
 
 	private Bank myBank;
 	
-	
 	// Peripherals
 	private Printer myPrinter;
-	
+	private CashDispenser myDispenser;
 	
 	
 	// Validation Exceptions?
 	public ATM() {
 		myBank = new Bank();
-		myPrinter = new Printer();		
+		myPrinter = new Printer();	
+		myDispenser = new CashDispenser();
 	}
 	
 	
@@ -73,7 +72,7 @@ public class ATM {
 	// A string is sent to the printer to be printed. 
 	// FORMAT: "[TIMESTAMP]\t TRANSACTIONTYPE AMOUNT
 	
-	public void print(String str){
+	public void print(String transactionType){
 		myPrinter.print("[" + Instant.now() + "]\t" + " -- "); //WIP
 	}
 	
@@ -93,7 +92,7 @@ public class ATM {
 			clear();
 			break;
 		case 1: 
-			//withdraw things
+			atmState = state.CASH;
 			break;
 		case 2:
 			//check balance
@@ -107,7 +106,7 @@ public class ATM {
 	
 	
 	public static void main(String[] args) {
-		System.out.println(Instant.now());
+	
 	}
 	
 }
