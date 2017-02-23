@@ -9,7 +9,6 @@ DIS Choose Transaction
 BUTTON CB
 DIS Choose Transaction
 CANCEL
-DIS Choose Transaction
 CARDREAD 6789
 DIS Enter PIN
 NUM 4444
