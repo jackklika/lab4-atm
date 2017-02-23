@@ -7,17 +7,18 @@ public class Simulator {
 	//Bank myBank = new Bank();
 	
 	public static void main(String[] args) throws IOException {
+		Simulator s = new Simulator();
 		if (args[0].equals(null)){ // run with no arguments
 			// do prompt version
 			Scanner reader = new Scanner(System.in);
 			String input = null;
 			do {
 				input = reader.nextLine();
-			} while (prompt(input));
+			} while (s.prompt(input));
 		}
 		else { // run with filename argument
 			Path path = Paths.get(args[0]);
-			Files.lines(path).forEach(s -> quickPrompt(s));
+			Files.lines(path).forEach(l -> s.prompt(l));
 		}
 		
 	}
