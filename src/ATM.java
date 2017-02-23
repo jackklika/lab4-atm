@@ -1,5 +1,7 @@
 import java.util.*;
+import java.text.SimpleDateFormat;
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 
 
 public class ATM {
@@ -19,11 +21,13 @@ public class ATM {
 	
 	// NOt sure if we need this
 	private int pin = 0;
+	private int amount; // the amount of money withdrawn
 	
 	private Customer currentCustomer = null;
 	private Account userAccount;
 
 	private Bank myBank;
+	
 	
 	// Peripherals
 	private Printer myPrinter;
@@ -55,25 +59,58 @@ public class ATM {
 	// Reads the card and stores the account number.
 	// CARDREAD <num>
 	public void cardRead(int accountNum){
+		output("CARDREAD " + accountNum);
 		currentCustomer = new Customer(new Card(accountNum));
-		//curCustomer.c.accountNumber;
+		atmState = state.PIN;
+		//DIS "Enter PIN";
 	}
 	
 	// Numbers are entered into the PIN pad. Returns the numbers.
-	public int num(int numbers){
-		return 0;
+	public void num(int numbers){
+		switch (atmState) {
+			case PIN:
+				userAccount = myBank.validate(currentCustomer.card.accountNumber, numbers);
+				if (userAccount == null){ // failed validation -- account doesn't exist or pin is incorrect
+					clear(); // Reset ATM
+				} else { // Account exists and matches with pin
+					
+				}
+				break;
+			
+			case CASH:
+				if (userAccount != null){
+					if (withdraw(numbers)){ // performs this function. If it's true, it prints.
+						// Withdraw money
+					} else {
+						// failed withdrawal -- not enough cash
+					}
+				} else {
+					// account not valid
+				}
+				
+				break;
+				
+			case NOINPUT:
+				// Nothing should happen. No input is expected.				
+		}
 	}
 	
 	// A string is displayed on the screen to the viewer
 	public void display(String str){
-		
+		System.out.println(str); // "Prints it out to the screen"
 	}
 	
 	// A string is sent to the printer to be printed. 
-	// FORMAT: "[TIMESTAMP]\t TRANSACTIONTYPE AMOUNT
+	// FORMAT: "[TIMESTAMP]\t TRANSACTIONTYPE [AMOUNT IN ACCOUNT]
 	
 	public void print(String transactionType){
-		myPrinter.print("[" + Instant.now() + "]\t" + " -- "); //WIP
+		myPrinter.print("[" + new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime())
+				+ "]\t" + " -- " + transactionType + "  $" + amount); //WIP
+	}
+	
+	// Prints to standard console
+	public void output(String str){
+		System.out.println(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " " + str);
 	}
 	
 	// Clears everything from the ATM after a user exits.
@@ -90,12 +127,15 @@ public class ATM {
 		switch(buttonID){
 		case 0:
 			clear();
+			output("BUTTON CANCEL");
 			break;
 		case 1: 
 			atmState = state.CASH;
+			output("BUTTON W");
 			break;
 		case 2:
 			//check balance
+			output("BUTTON CB");
 			break;
 		default:
 			//invalid input thing
@@ -103,10 +143,11 @@ public class ATM {
 		}
 	}
 	
+
+	
 	
 	
 	public static void main(String[] args) {
-	
+
 	}
-	
 }
