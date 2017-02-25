@@ -44,8 +44,7 @@ public class ATM {
 	
 	// Returns true if withdrawal works, false if it doesn't and no operations occur
 	// Assumes the pin was correct
-	public boolean withdraw(double amount){
-		// account.validate (not bank.validate(account))				
+	public boolean withdraw(double amount){			
 		return (myBank.withdraw(amount, userAccount));		
 	}
 	
@@ -106,7 +105,7 @@ public class ATM {
 	
 	public void print(String transactionType){
 		myPrinter.print("[" + new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime())
-				+ "]\t" + " -- " + transactionType + "  $" + amount); //WIP
+				+ "]\t" + " -- " + transactionType + "  $" + amount);
 	}
 	
 	// Prints to standard console
@@ -117,6 +116,7 @@ public class ATM {
 	// Clears everything from the ATM after a user exits.
 	public void clear(){
 		currentCustomer = null;
+		atmState = state.NOINPUT;
 	}
 	
 	// A button of of name <name> has been touched
@@ -128,27 +128,20 @@ public class ATM {
 		switch(buttonID){
 		case 0:
 			clear();
-			output("BUTTON CANCEL");
+			output("BUTTON CANCEL"); // --> "Canceled. Please swipe card"
 			break;
 		case 1: 
 			atmState = state.CASH;
-			output("BUTTON W");
+			output("BUTTON W"); // --> "Withdraw how much?"
+			
 			break;
 		case 2:
 			//check balance
-			output("BUTTON CB");
+			output("BUTTON CB"); // --> Show balance
 			break;
 		default:
 			//invalid input thing
 			break;
 		}
-	}
-	
-
-	
-	
-	
-	public static void main(String[] args) {
-
 	}
 }

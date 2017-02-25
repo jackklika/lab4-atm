@@ -74,6 +74,9 @@ public class Simulator {
 			case "EXIT":
 				b = false;
 				break;
+			default:
+				System.out.println("Unsupported Command");
+				break;
 		}
 		return b;
 	}
