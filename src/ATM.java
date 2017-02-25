@@ -71,7 +71,7 @@ public class ATM {
 			case PIN:
 				userAccount = myBank.validate(currentCustomer.card.accountNumber, numbers);
 				if (userAccount == null){ // failed validation -- account doesn't exist or pin is incorrect
-					clear(); // Reset ATM
+					//clear(); // Reset ATM -> need to have it save card data when wrong pin is entered.
 				} else { // Account exists and matches with pin
 					
 				}

@@ -1,7 +1,15 @@
 
 public class CashDispenser {
- public void dispense(int c){
 	
-	 System.out.println("Dispensing amount of cash: $" + c);
- }
+	private int onHand = 10000;
+	
+	public void dispense(int c){
+		onHand -= c;
+	}
+	
+	public void deposit(int c){
+		onHand += c;
+	}
+	
+	
 }

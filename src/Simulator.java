@@ -31,6 +31,7 @@ public class Simulator {
 		
 	}
 	
+	@SuppressWarnings("null")
 	public boolean prompt(String s){
 		boolean b = true;
 		String[] sp = s.split("\\s+");
