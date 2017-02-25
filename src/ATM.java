@@ -81,6 +81,7 @@ public class ATM {
 				if (userAccount != null){
 					if (withdraw(numbers)){ // performs this function. If it's true, it prints.
 						// Withdraw money
+						// TODO: or have the cash dispenser activated here (as opposed to inside withdraw). should the print command be here too?
 					} else {
 						// failed withdrawal -- not enough cash
 					}

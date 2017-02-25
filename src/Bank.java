@@ -45,7 +45,8 @@ public class Bank {
 			if (r.account == i.account){ // Does the account have the same ID?
 				if (i.validate(amount) == true) { // Does the account have the balance to withdraw from?
 					i.balance -= amount;
-					System.out.println("[SUCCESS]\t " + amount + " added to " + r.account + " Current Balance: " + r.balance);
+					// TODO: activate the cash dispenser object and have it output "money"
+					System.out.println("[SUCCESS]\t $" + amount + " withdrawn from " + r.account + " Current Balance: " + r.balance);
 					return true;
 				}				
 			}
