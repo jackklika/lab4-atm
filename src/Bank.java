@@ -16,7 +16,7 @@ public class Bank {
 			}
 		}
 		accounts.add(new Account(balance, pin, account));
-		System.out.println("[SUCCESS] Account added: " + " AccountID: " + account +  " Pin: " + pin + " Balance " + balance);
+		//System.out.println("[SUCCESS] Account added: " + " AccountID: " + account +  " Pin: " + pin + " Balance " + balance);
 		return true;
 	}
 
@@ -45,13 +45,12 @@ public class Bank {
 			if (r.account == i.account){ // Does the account have the same ID?
 				if (i.validate(amount) == true) { // Does the account have the balance to withdraw from?
 					i.balance -= amount;
-					// TODO: activate the cash dispenser object and have it output "money"
-					System.out.println("[SUCCESS]\t $" + amount + " withdrawn from " + r.account + " Current Balance: " + r.balance);
+					//System.out.println("[SUCCESS]\t $" + amount + " withdrawn from " + r.account + " Current Balance: " + r.balance);
 					return true;
 				}				
 			}
 		}
-		System.out.println("[ERR]\t " + amount + " not added to " + r.account + " -- INSUFFICIENT FUNDS! Balance: " + r.balance);
+		//System.out.println("[ERR]\t " + amount + " not withdrawn from " + r.account + " -- INSUFFICIENT FUNDS! Balance: " + r.balance);
 		return false;
 	}
 	

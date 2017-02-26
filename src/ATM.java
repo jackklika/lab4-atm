@@ -66,6 +66,7 @@ public class ATM {
 	
 	// Numbers are entered into the PIN pad. Returns the numbers.
 	public void num(int numbers){
+		output("NUM " + numbers);
 		switch (atmState) {
 			case PIN:
 				userAccount = myBank.validate(currentCustomer.card.accountNumber, numbers);
@@ -80,7 +81,7 @@ public class ATM {
 				if (userAccount != null){
 					if (withdraw(numbers)){ // performs this function. If it's true, it prints.
 						// Withdraw money
-						// TODO: or have the cash dispenser activated here (as opposed to inside withdraw). should the print command be here too?
+						myDispenser.dispense(numbers);
 					} else {
 						// failed withdrawal -- not enough cash
 					}
@@ -117,6 +118,7 @@ public class ATM {
 	public void clear(){
 		currentCustomer = null;
 		atmState = state.NOINPUT;
+		System.out.println("EJECT CARD");
 	}
 	
 	// A button of of name <name> has been touched
@@ -127,8 +129,8 @@ public class ATM {
 		
 		switch(buttonID){
 		case 0:
-			clear();
 			output("BUTTON CANCEL"); // --> "Canceled. Please swipe card"
+			clear();
 			break;
 		case 1: 
 			atmState = state.CASH;
@@ -138,6 +140,7 @@ public class ATM {
 		case 2:
 			//check balance
 			output("BUTTON CB"); // --> Show balance
+			output("W $" + userAccount.balance);
 			break;
 		default:
 			//invalid input thing

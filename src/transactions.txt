@@ -8,7 +8,7 @@ NUM 20
 DIS Choose Transaction
 BUTTON CB
 DIS Choose Transaction
-CANCEL
+BUTTON CANCEL
 CARDREAD 6789
 DIS Enter PIN
 NUM 4444
@@ -21,4 +21,4 @@ DIS Amount?
 NUM 100
 DIS Choose Transaction
 BUTTON CB
-CANCEL
+BUTTON CANCEL
